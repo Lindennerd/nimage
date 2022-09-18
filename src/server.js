@@ -19,10 +19,7 @@ if (process.env.NODE_ENV === 'production') {
     app.use('/', imageRouter);
 }
 
-app.use('/', (req, res) => {
-    res.send('Up and Running!');
-})
-
+app.use('/', (req, res) => res.sendFile(path.join(__dirname, '../index.html')));
 app.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile))
 
 module.exports = app;
