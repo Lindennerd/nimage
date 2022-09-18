@@ -15,7 +15,7 @@ app.use(express.urlencoded({extended: true}));
 app.use(morgan('dev'));
 
 if (process.env.NODE_ENV === 'production') {
-    app.use('/.netlify/functions/server', imageRouter);
+    app.use('/.netlify/functions/server/', imageRouter);
 } else {
     app.use('/', imageRouter);
 }
