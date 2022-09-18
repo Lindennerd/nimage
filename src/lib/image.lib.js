@@ -2,11 +2,6 @@ const jimp = require("jimp");
 
 const imageLib = () => {
   const pasteTextToImage = async (imageUrl, text) => {
-    console.log("loading image into jimp");
-
-    console.log("Jimp instance", jimp);
-    console.log("Jimp read function", jimp.read);
-
     //REF: https://github.com/Vibrant-Colors/node-vibrant/issues/108
     // apparently the latest version of jimp doesn't work very well when compiled
     const jimpFont = jimp.FONT_SANS_32_BLACK
@@ -17,9 +12,11 @@ const imageLib = () => {
       ? jimp.read(imageUrl)
       : jimp.default.read(imageUrl));
 
+    console.log("Jimp loadFont function", jimp.loadFont);
+
     const loadedFont = await (jimp.loadFont
       ? jimp.loadFont(jimpFont)
-      : jimp.loadFont(jimpFont));
+      : jimp.deafult.loadFont(jimpFont));
 
     const printedImage = await image.print(loadedFont, 10, 90, text, 700, 100);
 
