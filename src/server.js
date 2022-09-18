@@ -13,7 +13,7 @@ const app = express();
 app.use(cors());
 app.use(morgan('dev'));
 
-// const router = express.Router();
+const router = express.Router();
 // const ROOT_PATH = process.env.NODE_ENV === 'production'
 //     ? '/.netlify/functions/server/doc'
 //     : '/';
@@ -29,7 +29,7 @@ router.get('/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile))
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
-app.use(ROOT_PATH, router);
+app.use("/", router);
 
 
 module.exports = app;
