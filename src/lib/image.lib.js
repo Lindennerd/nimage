@@ -4,11 +4,13 @@ const imageLib = () => {
   const pasteTextToImage = async (imageUrl, text) => {
       console.log("loading image into jimp");
       
-      console.log("Jimp instance", Jimp);
-      console.log("Jimp read function", Jimp.read);
+      const jimp = Jimp();
 
-    const image = await Jimp.read(imageUrl);
-    const loadedFont = await Jimp.loadFont(Jimp.FONT_SANS_32_BLACK);
+      console.log("Jimp instance", jimp);
+      console.log("Jimp read function", jimp.read);
+
+    const image = await jimp.read(imageUrl);
+    const loadedFont = await jimp.loadFont(jimp.FONT_SANS_32_BLACK);
     const printedImage = await image.print(loadedFont, 10, 90, text, 700, 100);
     return await printedImage.getBase64Async("image/jpeg");
   };
