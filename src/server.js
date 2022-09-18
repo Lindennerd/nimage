@@ -1,7 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 const serverless = require('serverless-http');
-const swaggerUi = require('swagger-ui-express')
+const swaggerUi = require('swagger-ui-express');
+const path = require('path');
 const swaggerFile = require('../swagger-output.json')
 const imageRouter = require('./routes/image');
 const morgan = require('morgan');
@@ -19,7 +20,7 @@ if (process.env.NODE_ENV === 'production') {
     app.use('/', imageRouter);
 }
 
-app.use('/', (req, res) => res.sendFile(path.join(__dirname, '../index.html')));
+// app.use('/', (req, res) => res.sendFile(path.join(__dirname, '../index.html')));
 app.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile))
 
 module.exports = app;
