@@ -24,11 +24,11 @@ router.get('/', (req, res) => {
 
 router.get('/image', (req, res) => res.send('Send me an ImageURL and a Text'))
 router.get('/image/:imageUrl/:text', controller.getImage);
-router.get('/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile))
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
+app.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile))
 app.use("/", router);
 
 
