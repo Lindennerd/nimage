@@ -12,11 +12,11 @@ const imageLib = () => {
       ? jimp.read(imageUrl)
       : jimp.default.read(imageUrl));
 
-    console.log("Jimp loadFont function", jimp.loadFont);
+    console.log("Jimp loadFont function", jimp.default.loadFont);
 
     const loadedFont = await (jimp.loadFont
       ? jimp.loadFont(jimpFont)
-      : jimp.deafult.loadFont(jimpFont));
+      : jimp.default.loadFont(jimpFont));
 
     const printedImage = await image.print(loadedFont, 10, 90, text, 700, 100);
 
