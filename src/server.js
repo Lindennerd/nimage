@@ -21,6 +21,7 @@ router.get('/', (req, res) => {
   res.end();
 });
 
+router.get('/image', (req, res) => res.send('Send me an ImageURL and a Text'))
 router.get('/image/:imageUrl/:text', controller.getImage);
 
 app.use(express.json());
