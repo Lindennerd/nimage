@@ -14,27 +14,23 @@ app.use(cors());
 app.use(morgan('dev'));
 
 const router = express.Router();
+const ROOT_PATH = process.env.NODE_ENV === 'production'
+    ? '/.netlify/functions/server/doc'
+    : '/';
 
 router.get('/', (req, res) => {
-  res.writeHead(200, { 'Content-Type': 'text/html' });
-  res.write('<h1>Hello from Express.js!</h1>');
-  res.end();
+    res.redirect(ROOT_PATH + '/doc');
 });
 
 router.get('/image', (req, res) => res.send('Send me an ImageURL and a Text'))
-router.get('/image/:imageUrl/:text', controller.getImage);
+router.get('/image/:imageUrl/:text', await controller.getImage);
+router.get('/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile))
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
-if (process.env.NODE_ENV === 'production') {
-    app.use('/.netlify/functions/server', router);
-} else {
-    app.use('/', router);
-}
+app.use(ROOT_PATH, router);
 
-// app.use('/', (req, res) => res.sendFile(path.join(__dirname, '../index.html')));
-app.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile))
 
 module.exports = app;
 module.exports.handler = serverless(app);
