@@ -1,15 +1,15 @@
-const jimp = require("jimp");
+const Jimp = require("jimp");
 
 const imageLib = () => {
   const pasteTextToImage = async (imageUrl, text) => {
-    console.log("loading image into jimp");
-    const image = await jimp.read(imageUrl);
-    console.log("loading fonts for jimp");
-    const loadedFont = await jimp.loadFont(jimp.FONT_SANS_32_BLACK);
-    console.log("printing text into image");
+      console.log("loading image into jimp");
+      
+      console.log("Jimp instance", Jimp);
+      console.log("Jimp read function", Jimp.read);
 
+    const image = await Jimp.read(imageUrl);
+    const loadedFont = await Jimp.loadFont(Jimp.FONT_SANS_32_BLACK);
     const printedImage = await image.print(loadedFont, 10, 90, text, 700, 100);
-    console.log("image printed successfully");
     return await printedImage.getBase64Async("image/jpeg");
   };
 
