@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "netlify-lambda build express",
     "start": "node index.js",
     "dev": "nodemon index.js",
     "doc": "node swagger.js"
