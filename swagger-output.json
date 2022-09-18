@@ -17,6 +17,33 @@
     "application/json"
   ],
   "paths": {
+    "/.netlify/functions/serverimage/{imageUrl}/{text}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "imageUrl",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "text",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
     "/image/{imageUrl}/{text}": {
       "get": {
         "description": "",
@@ -37,6 +64,9 @@
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
           }
         }
       }

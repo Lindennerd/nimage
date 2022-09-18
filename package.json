@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "netlify-lambda build src",
-    "start": "node index.js",
+    "start": "node swagger.js && node index.js",
     "dev": "nodemon index.js",
     "doc": "node swagger.js"
   },
@@ -20,10 +20,10 @@
     "morgan": "^1.10.0",
     "netlify-lambda": "^2.0.15",
     "serverless-http": "^3.0.2",
-    "swagger-ui-express": "^4.5.0"
+    "swagger-ui-express": "^4.5.0",
+    "swagger-autogen": "^2.21.8"
   },
   "devDependencies": {
-    "nodemon": "^2.0.20",
-    "swagger-autogen": "^2.21.8"
+    "nodemon": "^2.0.20"
   }
 }

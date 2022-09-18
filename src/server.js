@@ -11,13 +11,17 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
-
 app.use(morgan('dev'));
+
 if (process.env.NODE_ENV === 'production') {
     app.use('/.netlify/functions/server', imageRouter);
 } else {
     app.use('/', imageRouter);
 }
+
+app.use('/', (req, res) => {
+    res.send('Up and Running!');
+})
 
 app.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile))
 
