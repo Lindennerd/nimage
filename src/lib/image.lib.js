@@ -1,5 +1,4 @@
 const jimp = require("jimp");
-const pluginPrint = require("@jimp/plugin-print");
 
 const imageLib = () => {
   const pasteTextToImage = async (imageUrl, text) => {
@@ -8,7 +7,9 @@ const imageLib = () => {
 
     console.log("getting plugin");
 
-    const jimpFont = pluginPrint().constants.FONT_SANS_32_BLACK;
+    const jimpFont = jimp.FONT_SANS_32_BLACK
+      ? jimp.FONT_SANS_32_BLACK
+      : jimp.default.FONT_SANS_32_BLACK;
 
     const image = await (jimp.read
       ? jimp.read(imageUrl)
