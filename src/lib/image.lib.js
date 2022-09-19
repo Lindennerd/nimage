@@ -1,4 +1,5 @@
 const jimp = require("jimp");
+
 const imageLib = () => {
   const pasteTextToImage = async (imageUrl, text) => {
     //REF: https://github.com/Vibrant-Colors/node-vibrant/issues/108
@@ -6,8 +7,7 @@ const imageLib = () => {
 
     console.log("getting plugin");
 
-    const jimpFont =
-      "../../fonts/open-sans/open-sans-32-black/open-sans-32-black.fnt";
+    const jimpFont = jimp.FONT_SANS_32_BLACK;
 
     const image = await (jimp.read
       ? jimp.read(imageUrl)
